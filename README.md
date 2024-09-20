@@ -8,6 +8,9 @@ docker build --no-cache -t jimchen2/backup-mongo-github .
 
 Configure `env`
 
+PLEASE USE PRIVATE IP MONGO URI
+
+
 ```
 docker run -d --restart always --env-file .env jimchen2/backup-mongo-github:latest
 ```
