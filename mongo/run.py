@@ -11,13 +11,12 @@ load_dotenv()
 
 def backup_mongodb_to_s3():
     # Get environment variables
-    mongo_uri = os.getenv('MONGODB_URI')
-    s3_bucket = os.getenv('S3_BUCKET_NAME')
-    aws_access_key = os.getenv('AWS_ACCESS_KEY_ID')
-    aws_secret_key = os.getenv('AWS_SECRET_ACCESS_KEY')
-    aws_endpoint = os.getenv('AWS_S3_ENDPOINT')  
+    mongo_uri = os.getenv('MONGO_MONGODB_URI')
+    s3_bucket = os.getenv('MONGO_S3_BUCKET_NAME')
+    aws_access_key = os.getenv('MONGO_AWS_ACCESS_KEY_ID')
+    aws_secret_key = os.getenv('MONGO_AWS_SECRET_ACCESS_KEY')
+    aws_endpoint = os.getenv('MONGO_AWS_S3_ENDPOINT')  
     
-
     backup_file = "./tmp/mongodb_backup.json"
     os.makedirs(os.path.dirname(backup_file), exist_ok=True)
 
@@ -55,7 +54,6 @@ def backup_mongodb_to_s3():
         backup_file, 
         s3_bucket, 
         s3_key,
-        ExtraArgs={'StorageClass': 'STANDARD_IA'}
     )
     
     # Remove old shallow backups only during full backup

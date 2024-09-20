@@ -1,0 +1,2 @@
+*/30 * * * * python /app/mongo/run.py
+0 0 * * 0 python /app/github/run.py

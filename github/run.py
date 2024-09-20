@@ -7,14 +7,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-USERNAME = os.environ.get('GITHUB_USERNAME')
-TOKEN = os.environ.get('GITHUB_TOKEN')
-S3_BUCKET = os.environ.get('S3_BUCKET_NAME')
-S3_ACCESS_KEY = os.environ.get('S3_ACCESS_KEY')
-S3_SECRET_KEY = os.environ.get('S3_SECRET_KEY')
-S3_ENDPOINT = os.environ.get('S3_ENDPOINT')
+USERNAME = os.environ.get('GIT_GITHUB_USERNAME')
+TOKEN = os.environ.get('GIT_GITHUB_TOKEN')
+S3_BUCKET = os.environ.get('GIT_S3_BUCKET_NAME')
+S3_ACCESS_KEY = os.environ.get('GIT_S3_ACCESS_KEY')
+S3_SECRET_KEY = os.environ.get('GIT_S3_SECRET_KEY')
+S3_ENDPOINT = os.environ.get('GIT_S3_ENDPOINT')
 TEMP_DIR = "./tmp/github_repos"
-SHALLOW_BACKUP_PERIOD_DAYS = int(os.environ.get('BACKUP_PERIOD_DAYS', 30))
+SHALLOW_BACKUP_PERIOD_DAYS = int(os.environ.get('GIT_BACKUP_PERIOD_DAYS', 30))
 
 def backup_github_repos(is_full_backup):
     if os.path.exists(TEMP_DIR):
