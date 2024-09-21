@@ -11,11 +11,17 @@ RUN git clone https://github.com/jimchen2/backup-to-s3.git .
 # Install dependencies
 RUN pip install -r requirements.txt
 
-# Set permissions for crontab file (already in repo)
-RUN chmod 0644 crontab
+# Copy crontab file to the cron.d directory
+COPY crontab /etc/cron.d/backup-cron
 
-# Apply crontab
-RUN crontab crontab
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/backup-cron
 
-# Ensure cron is running in the foreground
-CMD ["cron", "-f"]
+# Apply cron job
+RUN crontab /etc/cron.d/backup-cron
+
+# Create the log file to be able to run tail
+RUN touch /var/log/cron.log
+
+# Run the command on container startup
+CMD cron && tail -f /var/log/cron.log
